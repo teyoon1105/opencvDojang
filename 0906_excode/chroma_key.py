@@ -8,7 +8,7 @@ def on_trackbar(pos):
 
     mask = cv2.inRange(hsv,(hmin,150,0),(hmax,255,255))
     cv2.copyTo(frame2, mask, frame1)
-    cv2.imsho('frame', frame1)
+    cv2.imshow('frame', frame1)
           
 
 rain = "data2/raining.mp4"

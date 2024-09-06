@@ -42,10 +42,12 @@ while(True):
     if key ==27:
         break
     # 동영상 파일을 열었으니 다시 닫아줘야 한다
-    if cap.isOpened():
-        cap.release
+    
+    
+if cap.isOpened():
+    cap.release
         
     # 동영상을 닫았으니 창 역시 닫아준다
     
-    cv2.destroyAllWindows()
+cv2.destroyAllWindows()
     
