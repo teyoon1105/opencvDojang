@@ -23,22 +23,28 @@ for i in data_list:
 while True:
     success, frame = cap.read()
 
-    for code in pyzbar.decode(frame):
-        # cv2.imwrite('qrbarcode_image.png', frame)
-        my_code = code.data.decode('utf-8')
-        if my_code not in used_codes:
-            print("인식 성공 : ", my_code)
-            playsound("qrbarcode_beep.mp3")
-            used_codes.append(my_code)
+    if success:
+        for code in pyzbar.decode(frame):
+            # cv2.imwrite('qrbarcode_image.png', frame)
+            my_code = code.data.decode('utf-8')
+            if my_code not in used_codes:
+                print("인식 성공 : ", my_code)
+                playsound("C:/Users/teyoo/OneDrive/바탕 화면/pythonworkspace/opencvDojang/qr_code_create/qrbarcode_beep.mp3")
+                used_codes.append(my_code)
 
-            f2 = open("qrbarcode_data.txt", "a", encoding="utf8")
-            f2.write(my_code+'\n')
-            f2.close()
-        elif my_code in used_codes:
-            print("이미 인식된 코드 입니다.!!!")
-            playsound("qrbarcode_beep.mp3")
-        else:
-            pass
+                f2 = open("qrbarcode_data.txt", "a", encoding="utf8")
+                f2.write(my_code+'\n')
+                f2.close()
+            elif my_code in used_codes:
+                print("이미 인식된 코드 입니다.!!!")
+                playsound("C:/Users/teyoo/OneDrive/바탕 화면/pythonworkspace/opencvDojang/qr_code_create/qrbarcode_beep.mp3")
+            else:
+                pass
 
-    cv2.imshow('QRcode Barcode Scan', frame)
-    cv2.waitKey(1)
+        cv2.imshow('QRcode Barcode Scan', frame)
+        key = cv2.waitKey(1)
+        if key == 27:   
+            break
+
+cap.release()
+cv2.destroyAllWindows
